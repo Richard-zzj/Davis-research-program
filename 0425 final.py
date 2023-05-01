@@ -2,14 +2,13 @@ import os
 import matplotlib.pyplot as plt
 
 
-# 获取文件列表
-# 添加功能：识别并标记文件类型以便后续打开相应文件( + '.csv')；或者将csv转换成txt；或者另写一个代码给csv作图，因为csv的数据格式略有不同
+# get file list
 def get_files(in_path):
     fileList = os.listdir(in_path)
     return [name[:-4] for name in fileList]
 
 
-# 单位转换函数
+# identify the units
 def unit_trans(str):
     if str == ' V':
         return 1
@@ -29,7 +28,7 @@ def unit_trans(str):
         return 0
 
 
-# 由TXT文件画图
+# plot from data stored in .txt
 def draw(fileName, in_path, out_path):
     txt = open(in_path + '/' + fileName + '.TXT', "r", encoding='utf-8')
     data = txt.readlines()
@@ -71,7 +70,7 @@ def draw(fileName, in_path, out_path):
     plt.clf()   # annotate this if want fig to overlay
 
 
-# 最终打包
+# package the whole function
 def auto(in_path, out_path):
     fileList = get_files(in_path)
     for fileName in fileList:
